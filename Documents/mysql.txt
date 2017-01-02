@@ -1,0 +1,3 @@
+mysql -h mudfoot.doc.stu.mmu.ac.uk -u bellingm -p
+bellingm
+krIsderm2
