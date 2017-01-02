@@ -39,24 +39,40 @@ public class CoursesController extends HttpServlet {
         String tutor = request.getParameter("tutor");
         Course course = new Course();
         
-        if("insert".equals(action)) {
-        	int courseCredits = Integer.parseInt(credits);
-        	int courseDuration = Integer.parseInt(duration);
-            course = new Course(id, name, courseCredits, courseDuration, tutor);
-            dao.insertCourse(course);
-            response.sendRedirect("coursesCRUD.jsp");
-        } else if("delete".equals(action)){
-            dao.deleteCourse(id);
-            response.sendRedirect("coursesCRUD.jsp");
-        } else if("select".equals(action)) {
-            course = dao.getOneCourse(id);
-            response.sendRedirect("coursesCRUD.jsp?id=" + id);
-        } else if("update".equals(action)) {
-        	int courseCredits = Integer.parseInt(credits);
-        	int courseDuration = Integer.parseInt(duration);
-            course = new Course(id, name, courseCredits, courseDuration, tutor);
-            dao.updateCourse(id, course);
-            response.sendRedirect("coursesCRUD.jsp?id=" + id);
+        if("search".equals(action)) {
+        	
+        } else {
+        	
+        	switch(action) {
+        	
+        	case "insert":
+        	{
+            	int courseCredits = Integer.parseInt(credits);
+            	int courseDuration = Integer.parseInt(duration);
+                course = new Course(id, name, courseCredits, courseDuration, tutor);
+                dao.insertCourse(course);
+                response.sendRedirect("coursesCRUD.jsp");
+        	}
+        	case "delete":
+        	{
+                dao.deleteCourse(id);
+                response.sendRedirect("coursesCRUD.jsp");
+        	}
+        	case "select":
+        	{
+                course = dao.getOneCourse(id);
+                response.sendRedirect("coursesCRUD.jsp?id=" + id);
+        	}
+        	case "update":
+        	{
+            	int courseCredits = Integer.parseInt(credits);
+            	int courseDuration = Integer.parseInt(duration);
+                course = new Course(id, name, courseCredits, courseDuration, tutor);
+                dao.updateCourse(id, course);
+                response.sendRedirect("coursesCRUD.jsp?id=" + id); 
+        	}
+        	}
+
         }
         
 //        response.getWriter().append("Served at: ").append(request.getContextPath());
