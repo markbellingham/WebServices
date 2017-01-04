@@ -2,6 +2,11 @@ package Courses;
 
 import java.util.*;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Course {
     
     private String courseID;
@@ -34,30 +39,39 @@ public class Course {
         super();
     }
 
+    @XmlAttribute
     public String getCourseID() {
         return courseID;
     }
     public void setCourseID(String courseID) {
         this.courseID = courseID;
     }
+    
+    @XmlElement
     public String getCourseName() {
         return courseName;
     }
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
+    
+    @XmlElement
     public int getCourseCredits() {
         return courseCredits;
     }
     public void setCourseCredits(int courseCredits) {
         this.courseCredits = courseCredits;
     }
+    
+    @XmlElement
     public int getCourseDuration() {
         return courseDuration;
     }
     public void setCourseDuration(int courseDuration) {
         this.courseDuration = courseDuration;
     }
+    
+    @XmlElement
     public String getCourseTutor() {
         return courseTutor;
     }

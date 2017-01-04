@@ -5,10 +5,11 @@ import java.io.IOException;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
-//import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+
 import com.google.gson.Gson;
+import com.thoughtworks.xstream.XStream;
 
 import java.util.*;
 
@@ -37,6 +38,7 @@ public class CoursesController extends HttpServlet {
         List<Course> courses = null;
         
         PrintWriter out = response.getWriter();
+        StringWriter sw = new StringWriter();
         
         String format = request.getParameter("format");
         String output = "";
@@ -69,7 +71,17 @@ public class CoursesController extends HttpServlet {
         	case "xml":
         	{
             	courses = dao.searchCourse(search);
-            	
+           		outputPage = "courses.xml";
+           		XStream xstream = new XStream();
+           		xstream.alias("course", Course.class);
+           		xstream.alias("courses", CoursesList.class);
+           		xstream.addImplicitCollection(CoursesList.class, "list");
+           		
+           		CoursesList list = new CoursesList();
+           		list.addAll(courses);
+           		
+           		output = xstream.toXML(courses);
+           		out.println(output);
                 break;
         	}
         	case "text":
