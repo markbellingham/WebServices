@@ -26,8 +26,8 @@
     <%
 	    CourseDAO dao = new CourseDAO();
 	    Course course = new Course();
-		//List<Course> courses = dao.getAllCourses();
- 	    List<Course> courses = dao.searchCourse("Comp");
+		List<Course> courses = dao.getAllCourses();
+ 	    //List<Course> courses = dao.searchCourse("Comp");
  	    //course = dao.getOneCourse("Computing");
  	    //ArrayList<Course> courses = new ArrayList<Course>();
  	    if(request.getParameter("id") != null) {

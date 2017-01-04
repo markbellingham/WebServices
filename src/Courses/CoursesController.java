@@ -74,12 +74,12 @@ public class CoursesController extends HttpServlet {
            		outputPage = "courses.xml";
            		XStream xstream = new XStream();
            		xstream.alias("course", Course.class);
-           		xstream.alias("courses", CoursesList.class);
            		xstream.addImplicitCollection(CoursesList.class, "list");
            		
            		CoursesList list = new CoursesList();
            		list.addAll(courses);
            		
+           		response.setContentType("application/xhtml+xml");
            		output = xstream.toXML(courses);
            		out.println(output);
                 break;
