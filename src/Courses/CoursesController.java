@@ -7,6 +7,9 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 //import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+
+import com.google.gson.Gson;
+
 import java.util.*;
 
 /**
@@ -30,6 +33,14 @@ public class CoursesController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
         CourseDAO dao = new CourseDAO();
+        Course course = new Course();
+        List<Course> courses = null;
+        
+        PrintWriter out = response.getWriter();
+        
+        String format = request.getParameter("format");
+        String output = "";
+        String outputPage = "";
     	
         String action = request.getParameter("action");
         String id = request.getParameter("id");
@@ -37,14 +48,58 @@ public class CoursesController extends HttpServlet {
         String credits = request.getParameter("credits");
         String duration = request.getParameter("duration");
         String tutor = request.getParameter("tutor");
-        Course course = new Course();
+        String search = request.getParameter("search");
+        
+        System.out.println("Action = " + action);
+        System.out.println("Search = " + search);
+        System.out.println("Output = " + format);
         
         if("search".equals(action)) {
         	
+        	switch(format) {
+        	case "json":
+        	{
+            	courses = dao.searchCourse(search);
+            	output = new Gson().toJson(courses);
+            	response.setContentType("text/html");
+            	outputPage = "courses.json";
+            	out.println(output);
+                break;
+        	}
+        	case "xml":
+        	{
+            	courses = dao.searchCourse(search);
+            	
+                break;
+        	}
+        	case "text":
+        	{
+            	courses = dao.searchCourse(search);
+
+                break;
+        	}
+        	case "html":
+        	{
+            	courses = dao.searchCourse(search);
+            	request.getSession().setAttribute("courses", courses);
+            	System.out.println("Session value = " + request.getSession().getAttribute("courses"));
+
+                break;
+        	}
+            default:
+            {
+            	courses = dao.searchCourse(search);
+            	output = new Gson().toJson(courses);
+            	response.setContentType("text/html");
+            	outputPage = "courses.json";
+            	out.println(output);
+                break;
+            }
+        	}
+        	
         } else {
         	
-        	switch(action) {
-        	
+        	switch(action) {        	
         	case "insert":
         	{
             	int courseCredits = Integer.parseInt(credits);
@@ -52,16 +107,19 @@ public class CoursesController extends HttpServlet {
                 course = new Course(id, name, courseCredits, courseDuration, tutor);
                 dao.insertCourse(course);
                 response.sendRedirect("coursesCRUD.jsp");
+                break;
         	}
         	case "delete":
         	{
                 dao.deleteCourse(id);
                 response.sendRedirect("coursesCRUD.jsp");
+                break;
         	}
         	case "select":
         	{
                 course = dao.getOneCourse(id);
                 response.sendRedirect("coursesCRUD.jsp?id=" + id);
+                break;
         	}
         	case "update":
         	{
@@ -70,12 +128,17 @@ public class CoursesController extends HttpServlet {
                 course = new Course(id, name, courseCredits, courseDuration, tutor);
                 dao.updateCourse(id, course);
                 response.sendRedirect("coursesCRUD.jsp?id=" + id); 
+                break;
         	}
         	}
 
         }
         
-//        response.getWriter().append("Served at: ").append(request.getContextPath());
+        System.out.println("Courses = " + courses);
+        System.out.println("Output = " + output);
+        
+        RequestDispatcher rd = request.getRequestDispatcher(outputPage);
+
     }
 
     /**

@@ -3,22 +3,40 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
+	<title>Courses CRUD</title>
 	<link href="css/bootstrap.css" rel="stylesheet"/>
 </head>
-<body>
-    <h1>Courses</h1>
+<body style="margin-left:20px">
+
+	<h1>Search Courses</h1>
+	<form action="CoursesController">
+		<input type="text" name="search" placeholder="Search for courses"></input>
+		<select name="format">
+			<option value="select">Select</option>
+			<option value="json">JSON</option>
+			<option value="xml">XML</option>
+			<option value="text">text</option>
+			<option value="html">HTML</option>
+		</select>
+		<button class="btn btn-primary" type="submit" name="action" value="search">Submit</button>
+		
+	</form>
+	<br/>
     
     <%
 	    CourseDAO dao = new CourseDAO();
 	    Course course = new Course();
-	    List<Course> courses = dao.getAllCourses();
+		//List<Course> courses = dao.getAllCourses();
+ 	    List<Course> courses = dao.searchCourse("Comp");
+ 	    //course = dao.getOneCourse("Computing");
+ 	    //ArrayList<Course> courses = new ArrayList<Course>();
  	    if(request.getParameter("id") != null) {
 	        String id = request.getParameter("id");
 	        course = dao.getOneCourse(id);
 	    }
     %>
     
+    <h1>Courses</h1>
     <form action="CoursesController">
     <table class="table">
         <tr>

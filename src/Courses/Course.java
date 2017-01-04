@@ -4,9 +4,6 @@ import java.util.*;
 
 public class Course {
     
-    // Annotate for persistence and annotate JAXB XML See JDO datastore example for cities
-    // ajax-data
-    // ShowCities.java, CityUtils.java
     private String courseID;
     private String courseName;
     private int courseCredits;
