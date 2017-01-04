@@ -43,8 +43,13 @@ public class CoursesController extends HttpServlet {
         String format = request.getParameter("format");
         String output = "";
         String outputPage = "";
+        String action = "";
     	
-        String action = request.getParameter("action");
+        if(request.getParameter("action") == null) {
+        	response.sendRedirect("coursesCRUD.jsp");
+        } else {
+            action = request.getParameter("action");
+        }
         String id = request.getParameter("id");
         String name = request.getParameter("name");
         String credits = request.getParameter("credits");

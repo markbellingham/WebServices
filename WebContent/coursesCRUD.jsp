@@ -37,7 +37,7 @@
     %>
     
     <h1>Courses</h1>
-    <form action="CoursesController">
+    <form action="CoursesController" id="coursesList">
     <table class="table">
         <tr>
             <td><input name="id" 		class="form-control" value="<%= ((course.getCourseID()==null)?"":course.getCourseID())%>" placeholder="Course ID"/></td>
@@ -51,6 +51,9 @@
                 </button>
                 <button class="btn btn-primary" name="action" value="update">
                     Update
+                </button>
+                <button class="btn" name="clear" value="clear" $('#clear').click(function(){$('#coursesList').reset():});>
+                	Clear
                 </button>
             </td>
         </tr>
