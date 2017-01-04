@@ -191,7 +191,7 @@ public class CourseDAO {
 
 	public void deleteCourse(String courseID) {
 		String sql = "delete from courses where courseID = ?";
-		System.out.println("Delete statement = " + sql);
+		//System.out.println("Delete statement = " + sql);
 		Connection conn = openConnection();
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
