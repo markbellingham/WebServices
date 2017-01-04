@@ -86,8 +86,8 @@ public class CoursesController extends HttpServlet {
         	}
         	case "text":
         	{
-            	courses = dao.searchCourse(search);
-
+            	output = dao.searchCourse(search).toString();
+            	out.println(output);
                 break;
         	}
         	case "html":
