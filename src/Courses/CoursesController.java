@@ -57,10 +57,6 @@ public class CoursesController extends HttpServlet {
         String tutor = request.getParameter("tutor");
         String search = request.getParameter("search");
         
-        System.out.println("Action = " + action);
-        System.out.println("Search = " + search);
-        System.out.println("Output = " + format);
-        
         if("search".equals(action)) {
         	
         	switch(format) {
@@ -98,8 +94,6 @@ public class CoursesController extends HttpServlet {
         	case "html":
         	{
             	courses = dao.searchCourse(search);
-            	request.getSession().setAttribute("courses", courses);
-            	System.out.println("Session value = " + request.getSession().getAttribute("courses"));
 
                 break;
         	}
@@ -150,9 +144,6 @@ public class CoursesController extends HttpServlet {
         	}
 
         }
-        
-        System.out.println("Courses = " + courses);
-        System.out.println("Output = " + output);
         
         RequestDispatcher rd = request.getRequestDispatcher(outputPage);
 
