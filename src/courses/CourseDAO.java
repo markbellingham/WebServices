@@ -28,9 +28,9 @@ public class CourseDAO {
 	// Method for connecting to the database, returns an open connection
 	private java.sql.Connection openConnection() {
 		
-		String userid = "bellingm";
-		String userpass = "krIsderm2";
-		String url = "jdbc:mysql://mudfoot.doc.stu.mmu.ac.uk:3306/";
+		String userid = "xxxxxxxx";
+		String userpass = "xxxxxxxx";
+		String url = "jdbc:mysql://xxxxxxxx:3306/";
 		String connectionURL = url + userid;
 		java.sql.Connection conn = null;
 		
