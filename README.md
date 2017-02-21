@@ -14,4 +14,6 @@ A simple service that is accessible in a variety of ways using different technol
 
 - An Ajax based front end to restrieve the data and display it in a suitable format using library based routines for an enhanced user interface
 
+The Documents folder contains the basic sql scripts and assignment specification
+
 For more information about how the above was implemented, please refer to the assignment report pdf
