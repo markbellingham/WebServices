@@ -21,3 +21,5 @@ For more information about how the above was implemented, please refer to the as
 You can see a working demonstration of this project here:
 
 https://markbellingham.me/WebServices/
+
+![Application Screenshot](/Screenshots/webservices.png "Application Screenshot")
