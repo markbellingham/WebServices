@@ -17,3 +17,7 @@ A simple service that is accessible in a variety of ways using different technol
 The Documents folder contains the basic sql scripts and assignment specification
 
 For more information about how the above was implemented, please refer to the assignment report pdf
+
+You can see a working demonstration of this project here:
+
+https://markbellingham.me/WebServices/
